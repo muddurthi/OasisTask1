@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nemorphism calci</title>
+    <link rel="stylesheet" type="text/css"
+        href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<style>
+    body {
+        padding: 0;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        user-select: none;
+        background: #f1f2f3;
+    }
+
+    .container {
+        margin-left: 1.8em;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 13px 13px 20px #f7f9fb,
+            -13px -13px 20px #eef0f1;
+    }
+
+    .content {
+        width: 100%;
+        margin-top: 1.7em;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+   
+
+    .row button {
+        width: 80px;
+        height: 60px;
+        font-size: 16px;
+        border: none;
+        outline: none;
+        margin: 5px;
+        border-radius: 4px;
+        transition: .1s;
+        box-shadow: 5px 5px 8px #e14a4a20,
+            -5px -5px 8px #dce9ec;
+    }
+   
+    .row button:hover {
+        box-shadow: inset 5px 5px 8px rgba(16, 16, 16, .1),
+            inset -5px -5px 8px #e5b6b6;
+        background: #e0a7a7;
+    }
+
+    .display #screen {
+        margin-bottom: .5em;
+        width: auto;
+        height: 70px;
+        font-size: 36px;
+        outline: none;
+        border: none;
+        text-align: right;
+        padding-right: .5em;
+        background: #f6f5f3;
+        border-radius: 6px;
+        box-shadow: inset 8px 8px 8px #bebebc,
+            inset -8px -8px 8px #b8b7b7;
+            
+    }
+
+    #eval {
+        background: #33ccff;
+        color: #f4eff3;
+        box-shadow: inset 5px 5px 8px #66d9ff,
+            inset -5px -5px 8px #00ace6;
+        text-align: middle;
+        padding-right: .5em;
+        width: 175px;
+       
+    }
+
+    #eval:hover {
+        box-shadow: inset 5px 5px 8px #00ace6,
+            inset -5px -5px 8px #00ace6;
+    }
+
+    #ac {
+        background: #33cc33;
+        color: #fff;
+        text-align: middle;
+        padding-right: .5em;
+        
+        width: 175px;
+
+    }
+
+    #ac:hover {
+        box-shadow: inset 5px 5px 8px #2eb82e,
+            inset -5px -5px 8px #33cc33;
+    }
+
+    #ce {
+        background: #ff3399;
+        color: #fff;
+        text-align: middle;
+        padding-right: .5em;
+        
+        width: 175px;
+    }
+
+    #ce:hover {
+        box-shadow: inset 5px 5px 8px #e60073,
+            inset -5px -5px 8px #ff3399;
+    }
+</style>
+
+<body>
+
+    <div class="container">
+        <div class="display">
+            <input id="screen" type="text" placeholder="0">
+        </div>
+
+        <div class="btns">
+            <div class="row">
+                <button id="ce" onclick="backspc()">CE</button>
+                <button class="btn">%</button>
+                
+                
+                
+                <button id="ac" onclick="screen.value=''">AC</button>
+            </div>
+
+            <div class="row">
+                
+                <button class="btn">7</button>
+                <button class="btn">8</button>
+                <button class="btn">9</button>
+                <button class="btn">(</button>
+                <button class="btn">)</button>
+            </div>
+
+            <div class="row">
+                
+                <button class="btn">4</button>
+                <button class="btn">5</button>
+                <button class="btn">6</button>
+                <button class="btn">×</button>
+                <button class="btn">/</button>
+                
+                
+            </div>
+
+            <div class="row">
+               
+                
+                <button class="btn">1</button>
+                <button class="btn">2</button>
+                <button class="btn">3</button>
+                <button class="btn">+</button>
+                <button class="btn">-</button>
+            </div>
+
+            <div class="row">
+            
+                
+                </button>
+                <button class="btn">0</button>
+                <button class="btn">.</button>
+                
+                <button onclick="sqrt()">√</button>
+                <button id="eval" onclick="screen.value=eval(screen.value)">=</button>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    var screen = document.querySelector('#screen');
+    var btn = document.querySelectorAll('.btn');
+
+    /============ For getting the value of btn, Here we use for loop ============/
+    for (item of btn) {
+        item.addEventListener('click', (e) => {
+            btntext = e.target.innerText;
+
+            if (btntext == '×') {
+                btntext = '*';
+            }
+
+            if (btntext == '÷') {
+                btntext = '/';
+            }
+            screen.value += btntext;
+        });
+    }
+
+
+
+    function sqrt() {
+        screen.value = Math.sqrt(screen.value, 2);
+    }
+
+
+    function backspc() {
+        screen.value = screen.value.substr(0, screen.value.length - 1);
+    }
+</script>
+
+</html>
